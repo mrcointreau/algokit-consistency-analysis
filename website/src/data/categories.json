@@ -1,0 +1,74 @@
+[
+  {
+    "number": 1,
+    "slug": "python-library",
+    "name": "Python Library",
+    "description": "Python libraries distributed via PyPI without CLI entry points",
+    "repoCount": 2,
+    "color": "blue"
+  },
+  {
+    "number": 2,
+    "slug": "python-cli-tool",
+    "name": "Python CLI Tool",
+    "description": "Python command-line applications distributed via PyPI with CLI entry points",
+    "repoCount": 2,
+    "color": "indigo"
+  },
+  {
+    "number": 3,
+    "slug": "python-compiler",
+    "name": "Python Compiler/Language Tool",
+    "description": "Python language tools with compilation capabilities and LSP server support",
+    "repoCount": 2,
+    "color": "purple"
+  },
+  {
+    "number": 4,
+    "slug": "typescript-library",
+    "name": "TypeScript Library",
+    "description": "TypeScript/JavaScript libraries distributed via npm without CLI entry points",
+    "repoCount": 4,
+    "color": "cyan"
+  },
+  {
+    "number": 5,
+    "slug": "typescript-cli-tool",
+    "name": "TypeScript CLI Tool",
+    "description": "TypeScript command-line applications distributed via npm with bin entry points",
+    "repoCount": 3,
+    "color": "teal"
+  },
+  {
+    "number": 6,
+    "slug": "frontend-web-app",
+    "name": "Frontend Web Application",
+    "description": "React-based single-page application deployed to web hosting",
+    "repoCount": 1,
+    "color": "green"
+  },
+  {
+    "number": 7,
+    "slug": "vscode-extension",
+    "name": "VSCode Extension",
+    "description": "Visual Studio Code editor extension distributed via VSCode Marketplace",
+    "repoCount": 1,
+    "color": "yellow"
+  },
+  {
+    "number": 8,
+    "slug": "serverless-backend",
+    "name": "Serverless Backend API",
+    "description": "AWS Lambda-based serverless API with Infrastructure as Code",
+    "repoCount": 1,
+    "color": "orange"
+  },
+  {
+    "number": 9,
+    "slug": "static-site",
+    "name": "Static Documentation Site",
+    "description": "Static site generator for documentation with CDN deployment",
+    "repoCount": 1,
+    "color": "red"
+  }
+]

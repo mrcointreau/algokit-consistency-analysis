@@ -1,0 +1,1 @@
+../../by-category/05-typescript-cli-tool/puya-ts-analysis.md

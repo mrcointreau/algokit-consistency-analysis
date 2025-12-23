@@ -1,0 +1,1 @@
+../../by-category/04-typescript-library/algorand-typescript-testing-analysis.md

@@ -1,0 +1,1 @@
+../../by-category/02-python-cli-tool/algokit-client-generator-py-analysis.md

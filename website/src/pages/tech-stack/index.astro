@@ -1,0 +1,53 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import repositories from '../../data/repositories.json';
+
+const pythonRepos = repositories.filter(r => r.techStack === 'Python');
+const typescriptRepos = repositories.filter(r => r.techStack === 'TypeScript');
+const baseUrl = import.meta.env.BASE_URL || '/';
+---
+
+<Layout title="Browse by Tech Stack">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">Browse by Tech Stack</h1>
+      <p class="text-lg text-gray-600">
+        Repositories organized by programming language for tech-stack-focused comparisons.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Python -->
+      <a
+        href={`${baseUrl}tech-stack/python/`}
+        class="block p-8 bg-white border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-lg transition"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold text-gray-900">Python</h2>
+          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-semibold">
+            {pythonRepos.length} repos
+          </span>
+        </div>
+        <p class="text-gray-600">
+          Python libraries, CLI tools, and compilers distributed via PyPI
+        </p>
+      </a>
+
+      <!-- TypeScript -->
+      <a
+        href={`${baseUrl}tech-stack/typescript/`}
+        class="block p-8 bg-white border-2 border-gray-200 rounded-lg hover:border-green-500 hover:shadow-lg transition"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold text-gray-900">TypeScript</h2>
+          <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-semibold">
+            {typescriptRepos.length} repos
+          </span>
+        </div>
+        <p class="text-gray-600">
+          TypeScript/JavaScript libraries, CLI tools, web apps, and extensions
+        </p>
+      </a>
+    </div>
+  </div>
+</Layout>

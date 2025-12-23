@@ -1,0 +1,1 @@
+../../by-category/05-typescript-cli-tool/algokit-avm-debugger-analysis.md

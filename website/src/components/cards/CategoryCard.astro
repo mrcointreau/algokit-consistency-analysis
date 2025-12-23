@@ -1,0 +1,41 @@
+---
+interface Props {
+  category: {
+    name: string;
+    slug: string;
+    description: string;
+    repoCount: number;
+    color: string;
+  };
+}
+
+const { category } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL || '/';
+
+const colorClasses: Record<string, string> = {
+  blue: 'bg-blue-100 text-blue-800 border-blue-200',
+  indigo: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+  purple: 'bg-purple-100 text-purple-800 border-purple-200',
+  cyan: 'bg-cyan-100 text-cyan-800 border-cyan-200',
+  teal: 'bg-teal-100 text-teal-800 border-teal-200',
+  green: 'bg-green-100 text-green-800 border-green-200',
+  yellow: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+  orange: 'bg-orange-100 text-orange-800 border-orange-200',
+  red: 'bg-red-100 text-red-800 border-red-200',
+};
+
+const colorClass = colorClasses[category.color] || colorClasses.blue;
+---
+
+<a
+  href={`${baseUrl}categories/${category.slug}/`}
+  class="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow duration-200"
+>
+  <div class="flex items-start justify-between mb-3">
+    <h3 class="text-lg font-semibold text-gray-900">{category.name}</h3>
+    <span class={`px-2 py-1 text-xs font-medium rounded-full border ${colorClass}`}>
+      {category.repoCount} {category.repoCount === 1 ? 'repo' : 'repos'}
+    </span>
+  </div>
+  <p class="text-sm text-gray-600">{category.description}</p>
+</a>

@@ -1,0 +1,1 @@
+../../by-category/01-python-library/algokit-subscriber-py-analysis.md

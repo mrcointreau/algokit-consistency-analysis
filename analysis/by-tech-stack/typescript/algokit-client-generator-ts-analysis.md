@@ -1,0 +1,1 @@
+../../by-category/05-typescript-cli-tool/algokit-client-generator-ts-analysis.md

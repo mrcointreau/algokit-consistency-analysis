@@ -1,0 +1,92 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import CategoryCard from '../components/cards/CategoryCard.astro';
+import RepositoryCard from '../components/cards/RepositoryCard.astro';
+import categories from '../data/categories.json';
+import repositories from '../data/repositories.json';
+
+const pythonRepos = repositories.filter(r => r.techStack === 'Python');
+const typescriptRepos = repositories.filter(r => r.techStack === 'TypeScript');
+const baseUrl = import.meta.env.BASE_URL || '/';
+---
+
+<Layout title="AlgoKit Repository Analysis">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        AlgoKit Repository Analysis
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Comprehensive consistency analysis of 17 AlgoKit repositories covering CI/CD, branching strategies,
+        release automation, testing, and documentation.
+      </p>
+    </div>
+
+    <!-- Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      <div class="bg-white p-6 rounded-lg border border-gray-200 text-center">
+        <div class="text-3xl font-bold text-algo-primary mb-2">{repositories.length}</div>
+        <div class="text-sm text-gray-600">Total Repositories</div>
+      </div>
+      <div class="bg-white p-6 rounded-lg border border-gray-200 text-center">
+        <div class="text-3xl font-bold text-blue-600 mb-2">{pythonRepos.length}</div>
+        <div class="text-sm text-gray-600">Python Projects</div>
+      </div>
+      <div class="bg-white p-6 rounded-lg border border-gray-200 text-center">
+        <div class="text-3xl font-bold text-green-600 mb-2">{typescriptRepos.length}</div>
+        <div class="text-sm text-gray-600">TypeScript Projects</div>
+      </div>
+    </div>
+
+    <!-- Browse by Category -->
+    <section class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Browse by Category</h2>
+        <a href={`${baseUrl}categories/`} class="text-sm text-algo-primary hover:underline">
+          View all →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {categories.slice(0, 6).map(category => (
+          <CategoryCard category={category} />
+        ))}
+      </div>
+    </section>
+
+    <!-- All Repositories -->
+    <section>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">All Repositories</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {repositories.map(repo => (
+          <RepositoryCard repo={repo} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Key Findings -->
+    <section class="mt-16 bg-yellow-50 border border-yellow-200 rounded-lg p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Findings</h2>
+      <ul class="space-y-2 text-gray-700">
+        <li class="flex items-start">
+          <span class="text-red-600 mr-2">⚠️</span>
+          <span><strong>Security:</strong> All 17 repositories have unpinned GitHub Actions (P0 risk)</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-yellow-600 mr-2">⚠️</span>
+          <span><strong>Consistency:</strong> Mixed Python/Node versions across workflows</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-blue-600 mr-2">ℹ️</span>
+          <span><strong>Opportunity:</strong> Standardization possible through shared CI/CD templates</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .text-algo-primary {
+    color: #00D2B8;
+  }
+</style>

@@ -1,0 +1,1 @@
+../../by-category/09-static-site/algokit-example-gallery-analysis.md

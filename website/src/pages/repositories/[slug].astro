@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../components/layout/Layout.astro';
+
+export async function getStaticPaths() {
+  const analyses = await getCollection('analyses');
+  return analyses.map(analysis => ({
+    params: { slug: analysis.slug },
+    props: { analysis },
+  }));
+}
+
+const { analysis } = Astro.props;
+const { Content } = await analysis.render();
+const baseUrl = import.meta.env.BASE_URL || '/';
+---
+
+<Layout title={`${analysis.data.repository} Analysis`} description={analysis.data.purpose}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-gray-600 mb-6">
+      <a href={baseUrl} class="hover:text-algo-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href={`${baseUrl}categories/${analysis.data.category}/`} class="hover:text-algo-primary">
+        {analysis.data.categoryName}
+      </a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900">{analysis.data.repository}</span>
+    </nav>
+
+    <!-- Repository Header -->
+    <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 font-mono mb-2">
+            {analysis.data.repository}
+          </h1>
+          <p class="text-gray-600">{analysis.data.purpose}</p>
+        </div>
+        <a
+          href={analysis.data.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition text-sm"
+        >
+          View on GitHub →
+        </a>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+          {analysis.data.categoryName}
+        </span>
+        <span class={`px-3 py-1 rounded-full text-sm ${
+          analysis.data.techStack === 'Python'
+            ? 'bg-blue-100 text-blue-800'
+            : 'bg-green-100 text-green-800'
+        }`}>
+          {analysis.data.techStack}
+        </span>
+        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
+          {analysis.data.distributionModel}
+        </span>
+      </div>
+    </div>
+
+    <!-- Analysis Content -->
+    <article class="bg-white border border-gray-200 rounded-lg p-8 prose prose-gray max-w-none">
+      <Content />
+    </article>
+  </div>
+</Layout>
+
+<style is:global>
+  .prose {
+    @apply text-gray-800;
+  }
+
+  .prose h1 {
+    @apply text-3xl font-bold text-gray-900 mt-8 mb-4;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-bold text-gray-900 mt-8 mb-4 border-b border-gray-200 pb-2;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold text-gray-900 mt-6 mb-3;
+  }
+
+  .prose h4 {
+    @apply text-lg font-semibold text-gray-900 mt-4 mb-2;
+  }
+
+  .prose p {
+    @apply my-4 leading-relaxed;
+  }
+
+  .prose ul {
+    @apply my-4 list-disc list-inside space-y-2;
+  }
+
+  .prose ol {
+    @apply my-4 list-decimal list-inside space-y-2;
+  }
+
+  .prose li {
+    @apply ml-4;
+  }
+
+  .prose a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+
+  .prose code {
+    @apply bg-gray-100 px-1 py-0.5 rounded text-sm font-mono text-gray-800;
+  }
+
+  .prose pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .prose pre code {
+    @apply bg-transparent text-gray-100 p-0;
+  }
+
+  .prose table {
+    @apply w-full border-collapse my-6;
+  }
+
+  .prose th {
+    @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+  }
+
+  .prose td {
+    @apply border border-gray-300 px-4 py-2;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4;
+  }
+
+  .text-algo-primary {
+    color: #00D2B8;
+  }
+</style>

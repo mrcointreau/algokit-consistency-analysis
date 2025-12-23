@@ -1,0 +1,1 @@
+../../by-category/07-vscode-extension/algokit-avm-vscode-debugger-analysis.md

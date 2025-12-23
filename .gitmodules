@@ -1,0 +1,68 @@
+[submodule "algokit-avm-debugger"]
+	path = algokit-avm-debugger
+	url = git@github.com:algorandfoundation/algokit-avm-debugger.git
+	branch = main
+[submodule "algokit-avm-vscode-debugger"]
+	path = algokit-avm-vscode-debugger
+	url = git@github.com:algorandfoundation/algokit-avm-vscode-debugger.git
+	branch = main
+[submodule "algokit-cli"]
+	path = algokit-cli
+	url = git@github.com:algorandfoundation/algokit-cli.git
+	branch = main
+[submodule "algokit-client-generator-py"]
+	path = algokit-client-generator-py
+	url = git@github.com:algorandfoundation/algokit-client-generator-py.git
+	branch = main
+[submodule "algokit-client-generator-ts"]
+	path = algokit-client-generator-ts
+	url = git@github.com:algorandfoundation/algokit-client-generator-ts.git
+	branch = main
+[submodule "algokit-dispenser-api"]
+	path = algokit-dispenser-api
+	url = git@github.com:algorandfoundation/algokit-dispenser-api.git
+	branch = main
+[submodule "algokit-example-gallery"]
+	path = algokit-example-gallery
+	url = git@github.com:algorandfoundation/algokit-example-gallery.git
+	branch = main
+[submodule "algokit-lora"]
+	path = algokit-lora
+	url = git@github.com:algorandfoundation/algokit-lora.git
+	branch = main
+[submodule "algokit-subscriber-py"]
+	path = algokit-subscriber-py
+	url = git@github.com:algorandfoundation/algokit-subscriber-py.git
+	branch = main
+[submodule "algokit-subscriber-ts"]
+	path = algokit-subscriber-ts
+	url = git@github.com:algorandfoundation/algokit-subscriber-ts.git
+	branch = main
+[submodule "algokit-utils-ts-debug"]
+	path = algokit-utils-ts-debug
+	url = git@github.com:algorandfoundation/algokit-utils-ts-debug.git
+	branch = main
+[submodule "algorand-python-testing"]
+	path = algorand-python-testing
+	url = git@github.com:algorandfoundation/algorand-python-testing.git
+	branch = main
+[submodule "algorand-typescript-testing"]
+	path = algorand-typescript-testing
+	url = git@github.com:algorandfoundation/algorand-typescript-testing.git
+	branch = main
+[submodule "puya"]
+	path = puya
+	url = git@github.com:algorandfoundation/puya.git
+	branch = main
+[submodule "puya-ts"]
+	path = puya-ts
+	url = git@github.com:algorandfoundation/puya-ts.git
+	branch = main
+[submodule "algokit-utils-py"]
+	path = algokit-utils-py
+	url = git@github.com:algorandfoundation/algokit-utils-py.git
+	branch = alpha
+[submodule "algokit-utils-ts"]
+	path = algokit-utils-ts
+	url = git@github.com:algorandfoundation/algokit-utils-ts.git
+	branch = decoupling
