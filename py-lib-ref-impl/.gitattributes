@@ -1,0 +1,9 @@
+# Set the repository to show as Python in GitHub
+*.py linguist-language=Python
+
+# Treat text as lf
+* text=auto
+* eol=lf
+
+# Denote generated files
+uv.lock linguist-generated=true

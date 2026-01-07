@@ -1,0 +1,121 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+      - release
+  workflow_dispatch:
+
+concurrency: release
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  ci:
+    name: 'Build and Test'
+    uses: ./.github/workflows/python-ci.yml
+    with:
+      python-version: '3.12'
+      run-build: true
+      run-commit-lint: true
+      upload-artifact-name: package
+      upload-artifact-path: ./dist
+      # Uncomment if you need AlgoKit localnet for tests:
+      # pre-test-script: |
+      #   pipx install algokit
+      #   algokit localnet start
+      #   sleep 10
+
+  check-docs:
+    name: Check docs are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Build docs
+        run: uv run sphinx-build -b html docs docs/_build
+
+      - name: Check for changes
+        run: |
+          git add -N .
+          git diff --exit-code --name-only
+
+  release:
+    name: Release
+    needs:
+      - ci
+      - check-docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate bot token
+        uses: actions/create-github-app-token@v1
+        id: app_token
+        with:
+          app-id: ${{ secrets.BOT_ID }}
+          private-key: ${{ secrets.BOT_SK }}
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app_token.outputs.token }}
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Download built package
+        uses: actions/download-artifact@v4
+        with:
+          name: package
+          path: dist
+
+      - name: Python Semantic Release
+        uses: python-semantic-release/python-semantic-release@v10.3.1
+        with:
+          github_token: ${{ steps.app_token.outputs.token }}
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
+
+  publish-docs:
+    name: Publish docs
+    needs: release
+    if: github.ref_name == 'release'
+    uses: ./.github/workflows/gh-pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

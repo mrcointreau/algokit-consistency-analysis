@@ -1,0 +1,78 @@
+{
+  "name": "@algorandfoundation/ts-lib-ref-impl",
+  "version": "0.0.1",
+  "private": false,
+  "description": "TypeScript library reference implementation for AlgoKit ecosystem",
+  "author": "Algorand Foundation",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0"
+  },
+  "type": "commonjs",
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "files": [
+    "**/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js"
+    },
+    "./index.d.ts": "./index.d.ts",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "run-s build:*",
+    "build:0-clean": "shx rm -rf dist coverage",
+    "build:1-compile": "rollup -c --configPlugin typescript --configImportAttributesKey with",
+    "build:2-copy-pkg-json": "tstk copy-package-json --custom-sections module main type types exports",
+    "build:3-copy-readme": "shx cp ./README.md ./LICENSE ./dist",
+    "test": "vitest run --coverage",
+    "lint": "eslint ./src/ --ext .ts",
+    "lint:fix": "eslint ./src/ --ext .ts --fix",
+    "check-types": "tsc --noEmit",
+    "audit": "better-npm-audit audit",
+    "format": "prettier --write .",
+    "commit-lint": "commitlint --edit -o",
+    "semantic-release": "semantic-release",
+    "generate:docs": "typedoc",
+    "pre-commit": "run-s check-types lint:fix audit format test generate:docs"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@eslint/js": "^9.15.0",
+    "@makerx/prettier-config": "^2.0.0",
+    "@makerx/ts-toolkit": "4.0.0-beta.24",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@vitest/coverage-v8": "^3.1.4",
+    "better-npm-audit": "^3.11.0",
+    "conventional-changelog-conventionalcommits": "9.1.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-unused-imports": "^4.3.0",
+    "fast-glob": "^3.3.2",
+    "magic-string": "^0.30.7",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.0.2",
+    "rollup": "^4.41.1",
+    "semantic-release": "^25.0.2",
+    "shx": "^0.4.0",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.28.4",
+    "typedoc-plugin-markdown": "^4.2.8",
+    "typedoc-plugin-missing-exports": "^4.0.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.50.0",
+    "vitest": "^3.1.4"
+  }
+}

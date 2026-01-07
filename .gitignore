@@ -25,3 +25,4 @@ website/node_modules/
 website/dist/
 website/.astro/
 website/src/content/analyses/
+website/src/content/comparisons/

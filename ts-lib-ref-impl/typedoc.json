@@ -1,0 +1,22 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src/index.ts"],
+  "excludeInternal": true,
+  "excludeReferences": true,
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "includeHierarchySummary": false,
+  "outputs": [
+    {
+      "name": "html",
+      "path": "docs/_html"
+    }
+  ],
+  "name": "TypeScript Library Reference Implementation",
+  "projectDocuments": ["docs/getting-started.md"],
+  "plugin": ["typedoc-plugin-missing-exports", "typedoc-plugin-markdown"],
+  "cleanOutputDir": true,
+  "readme": "docs/readme.md",
+  "gitRevision": "main"
+}

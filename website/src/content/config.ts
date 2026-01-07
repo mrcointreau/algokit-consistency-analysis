@@ -13,6 +13,20 @@ const analysesCollection = defineCollection({
   }),
 });
 
+const comparisonsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    category: z.string(),
+    categoryName: z.string(),
+    techStack: z.enum(['Python', 'TypeScript']),
+    type: z.enum(['comparative-analysis', 'github-workflows-comparison']),
+    description: z.string(),
+    repositories: z.array(z.string()),
+  }),
+});
+
 export const collections = {
   analyses: analysesCollection,
+  comparisons: comparisonsCollection,
 };

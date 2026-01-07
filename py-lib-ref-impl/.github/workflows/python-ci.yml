@@ -1,0 +1,96 @@
+name: Python CI
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        description: 'Python version to use'
+        required: false
+        type: string
+        default: '3.12'
+      run-build:
+        description: 'Whether to run the build step'
+        required: false
+        type: boolean
+        default: false
+      run-commit-lint:
+        description: 'Whether to run commit linting'
+        required: false
+        type: boolean
+        default: false
+      pre-test-script:
+        description: 'Script to run before tests (e.g., start localnet)'
+        required: false
+        type: string
+        default: ''
+      test-script:
+        description: 'Test script to run'
+        required: false
+        type: string
+        default: 'uv run pytest --cov --cov-report=xml --cov-fail-under=80'
+      upload-artifact-name:
+        description: 'Name for the uploaded artifact'
+        required: false
+        type: string
+        default: ''
+      upload-artifact-path:
+        description: 'Path to upload as artifact'
+        required: false
+        type: string
+        default: './dist'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python ${{ inputs.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: 'uv.lock'
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Commit lint
+        if: inputs.run-commit-lint
+        run: |
+          uv run cz check --rev-range origin/${{ github.base_ref || 'main' }}..HEAD
+
+      - name: Lint with ruff
+        run: uv run ruff check src tests
+
+      - name: Format check with ruff
+        run: uv run ruff format --check src tests
+
+      - name: Type check with mypy
+        run: uv run mypy src
+
+      - name: Pre-test script
+        if: inputs.pre-test-script != ''
+        run: ${{ inputs.pre-test-script }}
+
+      - name: Run tests
+        run: ${{ inputs.test-script }}
+
+      - name: Build
+        if: inputs.run-build
+        run: uv build
+
+      - name: Upload artifact
+        if: inputs.upload-artifact-name != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.upload-artifact-name }}
+          path: ${{ inputs.upload-artifact-path }}
+          if-no-files-found: error

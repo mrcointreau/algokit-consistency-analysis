@@ -1,0 +1,100 @@
+# Local reusable CI workflow for TypeScript libraries
+# This workflow provides consistent CI across all AlgoKit TypeScript libraries
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: false
+        type: string
+        default: '22.x'
+      working-directory:
+        required: false
+        type: string
+        default: '.'
+      pre-test-script:
+        required: false
+        type: string
+        description: 'Script to run before tests (e.g., start localnet)'
+      test-script:
+        required: false
+        type: string
+        default: npm run test --if-present
+      audit-script:
+        required: false
+        type: string
+        default: npm run audit --if-present
+      run-build:
+        required: false
+        type: boolean
+        default: false
+      run-commit-lint:
+        required: false
+        type: boolean
+        default: false
+      upload-artifact-name:
+        required: false
+        type: string
+      upload-artifact-path:
+        required: false
+        type: string
+        default: './dist'
+
+jobs:
+  node-ci:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.working-directory }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ inputs.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: 'npm'
+          cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Rebuild and prepare
+        run: npm rebuild && npm run prepare --if-present
+
+      - name: Commit lint
+        if: ${{ inputs.run-commit-lint }}
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Type check
+        run: npm run check-types --if-present
+
+      - name: Pre-test
+        if: ${{ inputs.pre-test-script }}
+        run: ${{ inputs.pre-test-script }}
+
+      - name: Test
+        run: ${{ inputs.test-script }}
+
+      - name: Audit
+        run: ${{ inputs.audit-script }}
+
+      - name: Build
+        if: ${{ inputs.run-build }}
+        run: npm run build
+
+      - name: Upload artifact
+        if: ${{ inputs.upload-artifact-name }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.upload-artifact-name }}
+          path: ${{ inputs.upload-artifact-path }}

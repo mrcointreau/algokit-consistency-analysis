@@ -1,0 +1,57 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - '.github/ISSUE_TEMPLATE/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: 'Build and Test'
+    uses: ./.github/workflows/python-ci.yml
+    with:
+      python-version: '3.12'
+      run-build: true
+      run-commit-lint: true
+      # Uncomment if you need AlgoKit localnet for tests:
+      # pre-test-script: |
+      #   pipx install algokit
+      #   algokit localnet start
+      #   sleep 10
+
+  check-docs:
+    name: Check docs are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Build docs
+        run: uv run sphinx-build -b html docs docs/_build
+
+      - name: Check for changes
+        run: |
+          git add -N .
+          git diff --exit-code --name-only

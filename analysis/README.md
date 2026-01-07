@@ -18,6 +18,10 @@ Python libraries distributed via PyPI without CLI entry points.
 - [algokit-utils-py](by-category/01-python-library/algokit-utils-py-analysis.md)
 - [algokit-subscriber-py](by-category/01-python-library/algokit-subscriber-py-analysis.md)
 
+**Comparative Reports:**
+- [Comparative Analysis](by-category/01-python-library/comparative-analysis.md) - Quick comparison table
+- [GitHub Workflows Comparison](by-category/01-python-library/github-workflows-comparison-report.md) - Detailed CI/CD analysis
+
 ### Category 2: Python CLI Tool (2 repos)
 Python command-line applications distributed via PyPI with CLI entry points.
 
@@ -37,6 +41,10 @@ TypeScript/JavaScript libraries distributed via npm without CLI entry points.
 - [algokit-utils-ts-debug](by-category/04-typescript-library/algokit-utils-ts-debug-analysis.md)
 - [algokit-subscriber-ts](by-category/04-typescript-library/algokit-subscriber-ts-analysis.md)
 - [algorand-typescript-testing](by-category/04-typescript-library/algorand-typescript-testing-analysis.md)
+
+**Comparative Reports:**
+- [Comparative Analysis](by-category/04-typescript-library/comparative-analysis.md) - Quick comparison table
+- [GitHub Workflows Comparison](by-category/04-typescript-library/github-workflows-comparison-report.md) - Detailed CI/CD analysis
 
 ### Category 5: TypeScript CLI Tool (3 repos)
 TypeScript command-line applications distributed via npm with bin entry points.
