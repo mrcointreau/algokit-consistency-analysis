@@ -1,9 +1,9 @@
 {
-  "name": "@algorandfoundation/ts-lib-ref-impl",
+  "name": "@algorandfoundation/typescript-library-reference-implementation",
   "version": "0.0.1",
   "private": false,
   "description": "TypeScript library reference implementation for AlgoKit ecosystem",
-  "author": "Algorand Foundation",
+  "author": "Luca Martini",
   "license": "MIT",
   "engines": {
     "node": ">=20.0"

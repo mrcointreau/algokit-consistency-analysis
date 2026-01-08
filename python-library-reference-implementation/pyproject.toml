@@ -1,10 +1,10 @@
 [project]
-name = "algorandfoundation-py-lib-ref-impl"
+name = "algorandfoundation-python-library-reference-implementation"
 version = "0.0.1"
 description = "Python library reference implementation for AlgoKit ecosystem"
 readme = "README.md"
 license = { text = "MIT" }
-authors = [{ name = "Algorand Foundation", email = "contact@algorand.foundation" }]
+authors = [{ name = "Luca Martini" }]
 requires-python = ">=3.12"
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -18,10 +18,10 @@ keywords = ["algorand", "algokit", "blockchain"]
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/algorandfoundation/py-lib-ref-impl"
-Documentation = "https://algorandfoundation.github.io/py-lib-ref-impl/"
-Repository = "https://github.com/algorandfoundation/py-lib-ref-impl.git"
-Issues = "https://github.com/algorandfoundation/py-lib-ref-impl/issues"
+Homepage = "https://github.com/algorandfoundation/python-library-reference-implementation"
+Documentation = "https://algorandfoundation.github.io/python-library-reference-implementation/"
+Repository = "https://github.com/algorandfoundation/python-library-reference-implementation.git"
+Issues = "https://github.com/algorandfoundation/python-library-reference-implementation/issues"
 
 [build-system]
 requires = ["hatchling"]

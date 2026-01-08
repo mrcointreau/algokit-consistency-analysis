@@ -1,13 +1,13 @@
-"""Sphinx configuration for py-lib-ref-impl documentation."""
+"""Sphinx configuration for python-library-reference-implementation documentation."""
 
-import os
 import sys
+from pathlib import Path
 
 # Add the source directory to the path for autodoc
-sys.path.insert(0, os.path.abspath("../src"))
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 # -- Project information -----------------------------------------------------
-project = "py-lib-ref-impl"
+project = "python-library-reference-implementation"
 copyright = "2025, Algorand Foundation"
 author = "Algorand Foundation"
 
@@ -32,8 +32,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = "furo"
-html_static_path = ["_static"]
-html_title = "py-lib-ref-impl"
+html_title = "python-library-reference-implementation"
 
 # -- Extension configuration -------------------------------------------------
 

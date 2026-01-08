@@ -1,6 +1,6 @@
-# py-lib-ref-impl
+# Python Library Reference Implementation
 
-[![PyPI version](https://badge.fury.io/py/algorandfoundation-py-lib-ref-impl.svg)](https://badge.fury.io/py/algorandfoundation-py-lib-ref-impl)
+[![PyPI version](https://badge.fury.io/py/algorandfoundation-python-library-reference-implementation.svg)](https://badge.fury.io/py/algorandfoundation-python-library-reference-implementation)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -22,13 +22,13 @@ This is a template repository demonstrating best practices for Python library de
 ## Installation
 
 ```bash
-pip install algorandfoundation-py-lib-ref-impl
+pip install algorandfoundation-python-library-reference-implementation
 ```
 
 Or with uv:
 
 ```bash
-uv add algorandfoundation-py-lib-ref-impl
+uv add algorandfoundation-python-library-reference-implementation
 ```
 
 ## Quick Start
@@ -56,8 +56,8 @@ print(message)  # Output: Hello, World!
 
 ```bash
 # Clone the repository
-git clone https://github.com/algorandfoundation/py-lib-ref-impl.git
-cd py-lib-ref-impl
+git clone https://github.com/algorandfoundation/python-library-reference-implementation.git
+cd python-library-reference-implementation
 
 # Install dependencies
 uv sync --all-extras --dev
@@ -104,8 +104,8 @@ This project uses trunk-based development:
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License - see LICENSE for details.
 
 ## Contributing
 
-Contributions are welcome! Please read the [contributing guidelines](docs/getting-started.md) first.
+Contributions are welcome!

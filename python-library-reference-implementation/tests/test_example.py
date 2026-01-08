@@ -1,6 +1,5 @@
 """Tests for example module."""
 
-
 from py_lib_ref_impl import __version__, add, greet
 
 

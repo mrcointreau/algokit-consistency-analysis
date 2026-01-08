@@ -16,7 +16,7 @@ export interface GreetingOptions {
  *
  * @example
  * ```typescript
- * import { greet } from '@algorandfoundation/ts-lib-ref-impl'
+ * import { greet } from '@algorandfoundation/typescript-library-reference-implementation'
  *
  * const message = greet({ name: 'World' })
  * console.log(message) // Hello, World!

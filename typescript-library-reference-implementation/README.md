@@ -1,6 +1,6 @@
-# ts-lib-ref-impl
+# TypeScript Library Reference Implementation
 
-[![npm version](https://badge.fury.io/js/@algorandfoundation%2Fts-lib-ref-impl.svg)](https://badge.fury.io/js/@algorandfoundation%2Fts-lib-ref-impl)
+[![npm version](https://badge.fury.io/js/@algorandfoundation%2Ftypescript-library-reference-implementation.svg)](https://badge.fury.io/js/@algorandfoundation%2Ftypescript-library-reference-implementation)
 [![Node.js 22+](https://img.shields.io/badge/node-22+-blue.svg)](https://nodejs.org/en/download/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -22,19 +22,19 @@ This is a template repository demonstrating best practices for TypeScript librar
 ## Installation
 
 ```bash
-npm install @algorandfoundation/ts-lib-ref-impl
+npm install @algorandfoundation/typescript-library-reference-implementation
 ```
 
 Or with pnpm:
 
 ```bash
-pnpm add @algorandfoundation/ts-lib-ref-impl
+pnpm add @algorandfoundation/typescript-library-reference-implementation
 ```
 
 ## Quick Start
 
 ```typescript
-import { add, greet } from '@algorandfoundation/ts-lib-ref-impl'
+import { add, greet } from '@algorandfoundation/typescript-library-reference-implementation'
 
 // Add two numbers
 const result = add(2, 3)
@@ -56,8 +56,8 @@ console.log(message) // Output: Hello, World!
 
 ```bash
 # Clone the repository
-git clone https://github.com/algorandfoundation/ts-lib-ref-impl.git
-cd ts-lib-ref-impl
+git clone https://github.com/algorandfoundation/typescript-library-reference-implementation.git
+cd typescript-library-reference-implementation
 
 # Install dependencies
 npm install
@@ -105,4 +105,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Contributing
 
-Contributions are welcome! Please read the [contributing guidelines](docs/getting-started.md) first.
+Contributions are welcome!
